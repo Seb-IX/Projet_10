@@ -1,0 +1,11 @@
+azure-cognitiveservices-language-luis
+matplotlib
+pandas
+numpy
+botbuilder-core
+botbuilder-schema
+flask
+echobot
+asyncio
+aiohttp
+cookiecutter==1.7.0
