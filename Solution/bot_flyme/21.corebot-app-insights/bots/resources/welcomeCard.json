@@ -1,0 +1,50 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.0",
+  "body": [
+    {
+      "type": "TextBlock",
+      "size": "Medium",
+      "weight": "Bolder",
+      "text": "Welcome to Fly Me Bot!",
+      "wrap": true,
+      "maxLines": 0
+    },
+    {
+      "type": "TextBlock",
+      "text": "How can I help you ?",
+      "wrap": true
+    }
+  ],
+  "actions": [
+      {
+        "type": "Action.ShowCard",
+        "title": "Help",
+        "card": {
+            "type": "AdaptiveCard",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "text": "My goal is to help to book a flight : give me a trip(dates and city to origin and destination) as well as the budget and seat business.",
+                    "wrap": true
+                }
+            ]
+        }
+    },
+    {
+        "type": "Action.ShowCard",
+        "title": "Book a flight",
+        "card": {
+            "type": "AdaptiveCard",
+            "body": [
+                {
+                    "type": "TextBlock",
+                    "text": "Good, I am here to answer this task so please tell me where you want to go and on what dates ?",
+                    "wrap": true
+                }
+            ]
+        }
+    }
+  ]
+}
