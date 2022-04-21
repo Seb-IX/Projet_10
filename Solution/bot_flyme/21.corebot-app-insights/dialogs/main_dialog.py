@@ -84,7 +84,7 @@ class MainDialog(ComponentDialog):
 
         # Call LUIS and gather any potential booking details. (Note the TurnContext has the response to the prompt.)
         intent, luis_result = await LuisHelper.execute_luis_query(
-            self._luis_recognizer, step_context.context
+            self._luis_recognizer.get_luis_app(), step_context.context
         )
 
         if intent == Intent.BOOK_FLIGHT.value and luis_result:
@@ -95,22 +95,6 @@ class MainDialog(ComponentDialog):
 
             # Run the BookingDialog giving it whatever details we have from the LUIS call.
             return await step_context.begin_dialog(self._booking_dialog_id, luis_result)
-
-        if intent == Intent.GET_WEATHER.value:
-            get_weather_text = "TODO: get weather flow here"
-            get_weather_message = MessageFactory.text(
-                get_weather_text, get_weather_text, InputHints.ignoring_input
-            )
-            await step_context.context.send_activity(get_weather_message)
-
-        else:
-            didnt_understand_text = (
-                "Sorry, I didn't get that. Please try asking in a different way"
-            )
-            didnt_understand_message = MessageFactory.text(
-                didnt_understand_text, didnt_understand_text, InputHints.ignoring_input
-            )
-            await step_context.context.send_activity(didnt_understand_message)
 
         return await step_context.next(None)
 
@@ -125,9 +109,12 @@ class MainDialog(ComponentDialog):
             # If the call to the booking service was successful tell the user.
             # time_property = Timex(result.travel_date)
             # travel_date_msg = time_property.to_natural_language(datetime.now())
-            msg_txt = f"I have you booked to {result.destination} from {result.origin} on {result.travel_date}"
-            message = MessageFactory.text(msg_txt, msg_txt, InputHints.ignoring_input)
-            await step_context.context.send_activity(message)
+            # msg_txt = f"Please confirm, I have you booked to {result.destination} from {result.origin} on {result.start_date} \
+            # to {result.end_date}, your budget is {result.budget} on {result.seat} seat for {result.n_adult} \
+            # adult and {result.n_children}."
+
+            # message = MessageFactory.text(msg_txt, msg_txt, InputHints.ignoring_input)
+            # await step_context.context.send_activity(message)
 
         prompt_message = "What else can I do for you?"
         return await step_context.replace_dialog(self.id, prompt_message)

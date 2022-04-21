@@ -2,6 +2,7 @@
 # Licensed under the MIT License.
 
 from botbuilder.ai.luis import LuisApplication, LuisRecognizer, LuisPredictionOptions
+from luis_utility import LuisApp
 from botbuilder.core import (
     Recognizer,
     RecognizerResult,
@@ -30,7 +31,7 @@ class FlightBookingRecognizer(Recognizer):
             luis_application = LuisApplication(
                 configuration.LUIS_APP_ID,
                 configuration.LUIS_API_KEY,
-                "https://" + configuration.LUIS_API_HOST_NAME,
+                configuration.LUIS_API_HOST_NAME,
             )
 
             options = LuisPredictionOptions()
@@ -39,6 +40,8 @@ class FlightBookingRecognizer(Recognizer):
             self._recognizer = LuisRecognizer(
                 luis_application, prediction_options=options
             )
+            self.luis_app = LuisApp(configuration.LUIS_API_HOST_NAME,configuration.LUIS_API_KEY)
+            self.luis_app.get_app(configuration.LUIS_APP_ID)
 
     @property
     def is_configured(self) -> bool:
@@ -47,3 +50,10 @@ class FlightBookingRecognizer(Recognizer):
 
     async def recognize(self, turn_context: TurnContext) -> RecognizerResult:
         return await self._recognizer.recognize(turn_context)
+
+    def get_luis_app(self):
+        return self.luis_app
+
+    def predict_turn(self,turn_context : TurnContext):
+        return self.luis_app.predict(turn_context.activity.text,get_intent=True)
+
