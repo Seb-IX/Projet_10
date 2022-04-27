@@ -101,22 +101,12 @@ class MainDialog(ComponentDialog):
     async def final_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
         # If the child dialog ("BookingDialog") was cancelled or the user failed to confirm,
         # the Result here will be null.
+
         if step_context.result is not None:
-            result = step_context.result
-
-            # Now we have all the booking details call the booking service.
-
-            # If the call to the booking service was successful tell the user.
-            # time_property = Timex(result.travel_date)
-            # travel_date_msg = time_property.to_natural_language(datetime.now())
-            # msg_txt = f"Please confirm, I have you booked to {result.destination} from {result.origin} on {result.start_date} \
-            # to {result.end_date}, your budget is {result.budget} on {result.seat} seat for {result.n_adult} \
-            # adult and {result.n_children}."
-
-            # message = MessageFactory.text(msg_txt, msg_txt, InputHints.ignoring_input)
-            # await step_context.context.send_activity(message)
-
-        prompt_message = "What else can I do for you?"
+            prompt_message = "What else can I do for you?"
+        else:
+            prompt_message = "Sorry for the inconvenience, please reschedule your request."
+            
         return await step_context.replace_dialog(self.id, prompt_message)
 
     @staticmethod

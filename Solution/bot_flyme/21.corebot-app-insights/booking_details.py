@@ -37,3 +37,26 @@ class BookingDetails:
             "n_children:":self.n_children,
             "seat":self.seat
         })
+
+    def check_budget(self,budget):
+        try:
+            budget = float(budget)
+            if budget > 0 and budget < 10000:
+                return True
+            else:
+                return False
+        except:
+            return False
+
+    def check_n_adult_or_children(self,n_):
+        try:
+            n_ = int(n_)
+            if n_ >= 0 and n_ <= 100:
+                return True
+            else:
+                return False
+        except:
+            return False
+
+    def check_date(self,date):
+        return True

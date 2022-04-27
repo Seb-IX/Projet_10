@@ -13,7 +13,7 @@
     },
     {
       "type": "TextBlock",
-      "text": "How can I help you ?",
+      "text": "Just call me to start a conversation with me.",
       "wrap": true
     }
   ],
@@ -26,21 +26,7 @@
             "body": [
                 {
                     "type": "TextBlock",
-                    "text": "My goal is to help to book a flight : give me a trip(dates and city to origin and destination) as well as the budget and seat business.",
-                    "wrap": true
-                }
-            ]
-        }
-    },
-    {
-        "type": "Action.ShowCard",
-        "title": "Book a flight",
-        "card": {
-            "type": "AdaptiveCard",
-            "body": [
-                {
-                    "type": "TextBlock",
-                    "text": "Good, I am here to answer this task so please tell me where you want to go and on what dates ?",
+                    "text": "My goal is to help to book a flight : call me and give me a trip(dates and city to origin and destination) as well as the budget and seat business.",
                     "wrap": true
                 }
             ]
