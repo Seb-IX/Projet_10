@@ -58,12 +58,12 @@ class LuisData:
         '''Cette fonction permet le formatage des dialogues au format de données LUIS
         
         Parameters:
-            intent (str) : intention utilisateur, qui correspond au nommage LUIS pour l\'apprentissage, (définis le domaine d\'intention)
+            intent (str) : intention utilisateur, qui correspond au nommage LUIS pour l\'apprentissage, (définit le domaine d\'intention)
             text (str) : texte formulé par l\'utilisateur
-            labels (list/tuple => tuple) : liste des labels récupérer du texte utilisateur avec la clé correspondante
+            labels (list/tuple => tuple) : liste des labels récupérés du texte utilisateur avec la clé correspondante
 
         Returns:
-            format_data (dict) : retourne un format de donnée utilisable par LUIS => 
+            format_data (dict) : retourne un format de données utilisable par LUIS => 
             {
                 \'texte\':\'le texte de l'utilisateur.\',
                 \'intent_name\'=\'Exemple\',
@@ -131,7 +131,7 @@ class LuisData:
         return self.data_luis
 
     def _get_key_value(self,arg):
-        '''On recupére la clé et valeur de l\'argument fournie pour les clé suivante : "dst_city","or_city","str_date","end_date","n_adult","n_children","budget","seat"
+        '''On recupère la clé et valeur de l\'argument fournit pour les clés suivantes : "dst_city","or_city","str_date","end_date","n_adult","n_children","budget","seat"
 
         Parameters :
             arg (tuple) : argument de l\'intention utilisateur au format tuple.
@@ -139,7 +139,7 @@ class LuisData:
         Returns:
             key_value (tuple) : retourne la clé/valeur de l\'argument au format tuple si il correspond à la liste de clé.
             OR
-            None : si la valeur n'est pas formater correctement ou que la clé n\'est pas dans la liste cité précédemment
+            None : si la valeur n'est pas formatée correctement ou que la clé n\'est pas dans la liste citée précédemment
         '''
         list_key = ['dst_city','or_city','str_date','end_date','n_adult','n_children','budget','seat']
         if "key" in arg and "val" in arg:

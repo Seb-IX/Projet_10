@@ -11,7 +11,7 @@ class LuisApp:
                 list_entities=['dst_city','or_city','str_date','end_date','n_adult','n_children','budget','seat'],
                 list_intents=['BookFlight'],
                 runtime_endpoint_luis = None, runtime_key_luis = None):
-        '''Permet de facilité les manipulation des application LUIS, il est bien sur nécessaire en amont de 
+        '''Permet de faciliter les manipulations des applications LUIS, il est bien sûr nécessaire en amont de 
         créer une application LUIS sur Microsoft Azure à l'adresse suivante : 
         https://portal.azure.com/#create/Microsoft.CognitiveServicesLUISAllInOne
 
@@ -93,18 +93,18 @@ class LuisApp:
             for entity in self.list_entities:
                 id_entity = self.client.model.add_entity(self.app_id, self.app_version, name=entity)
                 if printing:
-                    print("L\'entité {}  à était ajouté avec l\'ID : {} .".format(entity,id_entity))
+                    print("L\'entité {}  a été ajouté avec l\'ID : {} .".format(entity,id_entity))
         else:
-            raise Exception("L\'application LUIS n'a pas était créé/récupérée, veuillez créer/récupérer l\'application avant toutes manipulation")
+            raise Exception("L\'application LUIS n'a pas été créée/récupérée, veuillez créer/récupérer l\'application avant toutes manipulations")
 
     def _add_intents(self,printing=False):
         if self.app_created:
             for entity in self.list_intents:
                 id_entity = self.client.model.add_intent(self.app_id, self.app_version, name=entity)
                 if printing:
-                    print("L\'intents {}  à était ajouté avec l\'ID : {} .".format(entity,id_entity))
+                    print("L\'intents {}  à été ajouté avec l\'ID : {} .".format(entity,id_entity))
         else:
-            raise Exception("L\'application LUIS n'a pas était créé/récupérée, veuillez créer/récupérer l\'application avant toutes manipulation")
+            raise Exception("L\'application LUIS n'a pas été créée/récupérée, veuillez créer/récupérer l\'application avant toutes manipulations")
 
     def _add_train_data(self,train_data):
         if self.app_created:
@@ -118,7 +118,7 @@ class LuisApp:
             else:
                 self.client.examples.add(self.app_id,self.app_version,train_data)
         else:
-            raise Exception("L\'application LUIS n'a pas était créé/récupérée, veuillez créer/récupérer l\'application avant toutes manipulation")
+            raise Exception("L\'application LUIS n'a pas été créée/récupérée, veuillez créer/récupérer l\'application avant toutes manipulations")
 
     def train(self,train_data=None):
         '''
@@ -141,7 +141,7 @@ class LuisApp:
                     waiting = False
             self.app_trained = True
         else:
-            raise Exception("L\'application LUIS n'a pas était créé/récupérée, veuillez créer/récupérer l\'application avant toutes manipulation")
+            raise Exception("L\'application LUIS n'a pas été créée/récupérée, veuillez créer/récupérer l\'application avant toutes manipulations")
     
     def publish(self,is_staging=False,is_public = True,print_final_endpoint=False):
         '''
@@ -192,7 +192,7 @@ class LuisApp:
             mean_score = sum(all_score) / len(all_score)
             return all_score, mean_score
         else:
-            raise Exception("L\'applicaiton n\'est pas disponnible, vérifier ça création ou sont déploiement.")
+            raise Exception("L\'applicaiton n\'est pas disponnible, vérifier sa création ou son déploiement.")
 
     def _format_y_true(self,y_true_data):
         y_true = {}
@@ -214,7 +214,7 @@ class LuisApp:
         return accuracy_score
 
     def _evaluate_value(self,data_true,data_pred):
-        # Peu être améliorer en utilisant par exemple la méthode de levenshtein 
+        # Peu être amélioré en utilisant par exemple la méthode de levenshtein 
         # ou une autre méthode de simmilitude
         if data_true == data_pred:
             return 1
@@ -243,7 +243,7 @@ class LuisApp:
             response = None
             start = time.time()
             duration = 0
-            # On boucle tant qu'on a pas une response mais un time out si pas de réponse valide
+            # On boucle tant qu'on n'a pas une response mais un time out si pas de réponse valide
             while response == None and duration <= timeout_seconde:
                 time.sleep(0.5)
                 response = requests.get(self.endpoint + query)
